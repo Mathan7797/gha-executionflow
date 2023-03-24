@@ -76,3 +76,11 @@ jobs:
         run: ls
       - name: Deploy
         run: echo "Deploying..."
+  report:
+    needs: [lint, deploy]
+    runs-on: windows-latest
+    steps:
+      - name: Output Information
+        run: |
+          echo "Something went wrong."
+          echo "${{ to_JSON(github) }}"
