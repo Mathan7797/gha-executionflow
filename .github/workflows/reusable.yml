@@ -2,8 +2,8 @@ name: Reusable deploy
 on: workflow_call
 jobs:
   deploy:
-  runs-on: windows-latest
-  steps:
-    - name: Output Information
-      run: echo "Deploting & Uploading..."
+    runs-on: windows-latest
+    steps:
+      - name: Output Information
+        run: echo "Deploting & Uploading..."
       
