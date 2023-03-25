@@ -70,6 +70,16 @@ jobs:
   deploy:
     needs: build
     uses: ./.github/workflows/reusable.yml
+    with: 
+      artifact-name: dist-
+    # secrets:
+    #   some-secrets: ${{ secrets.some-secrets }}
+  print-deploy-result:
+    needs: deploy
+    runs-on: windows-latest
+    steps:
+      - name: Print deploy result
+        run: ${{ needs.deploy.outputs.result }}
   report:
     needs: [lint, deploy]
     runs-on: windows-latest
