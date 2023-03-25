@@ -3,20 +3,21 @@ on:
   workflow_call:
     inputs:
       artifact-name:
-      description: The name of the deployable artifact files
-      required: false
-      default: dist
-      type: string
+        description: The name of the deployable artifact files
+        required: false
+        default: dist
+        type: string
     outputs:
-      result: The result of the deployment operation
-      value: ${{ jobs.deploy.outputs.outcome }}
+      result: 
+        description: The result of the deployment operation
+        value: ${{ jobs.deploy.outputs.outcome }}
     # secrets:
     #   some-secrets:
     #   required: false
 jobs:
   deploy:
     outputs:
-      outcome: ${{ steps.step-result.outputs.step-result }}
+      outcome: ${{ steps.set-result.outputs.step-result }}
     runs-on: windows-latest
     steps:
       - name: Get code
@@ -28,6 +29,6 @@ jobs:
       - name: Output Information
         run: echo "Deploting & Uploading..."
       - name: Set result output
-        id: step-result
+        id: set-result
         run: echo "::set-output name=step-result::'success'"
       
